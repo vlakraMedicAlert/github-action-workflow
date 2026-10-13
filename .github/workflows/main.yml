@@ -1,12 +1,14 @@
-name: Triggered from Teams
+name: Triggered from Teams Button
 
 on:
   repository_dispatch:
-    types: [teams-trigger] # This name must match the Event Name in Power Automate
+    types: [teams_manual_deploy] # This custom event name must match Power Automate
 
 jobs:
-  ping:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Run a script
-        run: echo "Workflow triggered successfully from Microsoft Teams!"
+      - name: Acknowledge Trigger
+        run: |
+          echo "The button in Microsoft Teams was clicked!"
+          echo "Triggered by user: ${{ github.event.client_payload.triggered_by }}"
