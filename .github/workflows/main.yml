@@ -1,0 +1,12 @@
+name: Triggered from Teams
+
+on:
+  repository_dispatch:
+    types: [teams-trigger] # This name must match the Event Name in Power Automate
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run a script
+        run: echo "Workflow triggered successfully from Microsoft Teams!"
